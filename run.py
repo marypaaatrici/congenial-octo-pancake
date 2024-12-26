@@ -20,7 +20,7 @@ def random_string(count):
     return "".join(random.choice(string.ascii_letters) for x in range(count))
 
 
-with SB(undetectable=True) as sb:
+with SB(undetectable=True,headless=True) as sb:
 
   
 
