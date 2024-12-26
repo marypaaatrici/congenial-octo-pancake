@@ -22,11 +22,13 @@ jobs:
           python -m pip install selenium
           python -m pip install supabase
           pip install seleniumbase
+          pip install pyautogui==0.9.53  # Menetapkan versi pyautogui yang kompatibel
           sudo apt install -y google-chrome-stable
           sudo apt install -y xvfb
-          export DISPLAY=:0
-          /usr/bin/Xvfb :0 -screen 0 1024x768x24 &
-          sleep 5
-          xvfb-run python run.py
+          sudo apt install -y x11-utils  # Menambahkan x11-utils
+          export DISPLAY=:99  # Menyeting DISPLAY ke :99
+          /usr/bin/Xvfb :99 -screen 0 1024x768x24 &  # Menjalankan Xvfb dengan display :99
+          sleep 5  # Menunggu agar Xvfb siap
+          xvfb-run --display :99 python run.py  # Menjalankan skrip dengan xvfb-run
       - name: done
         run: exit
